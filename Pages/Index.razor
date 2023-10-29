@@ -1,0 +1,13 @@
+﻿@page "/"
+@using TournamentCreator.Components
+@inject AuthenticationStateProvider AuthenticationStateProvider
+<PageTitle>Index</PageTitle>
+
+@if (IsLoggedIn)
+{
+    <TournamentSetup></TournamentSetup>   
+}
+else
+{
+    <h1>You must login in order to create a new tournament!</h1>
+}

@@ -1,0 +1,26 @@
+@inject NavigationManager NavigationManager
+<h3>Tournament Setup</h3>
+
+<EditForm Model="@Model" OnValidSubmit="CreateTournament">
+    <Validation Validator="ValidationRule.IsNotEmpty">
+        <InputText placeholder="Tournament Name" @bind-Value="Model.Name">
+        </InputText>
+    </Validation>
+    <br/>
+    <br/>
+    <Validation Validator="ValidateNumberOfTeams">
+        <TextEdit PlaceHolder="Enter participating teams. There must be at least 4 and a maximum of 8 teams.">
+            <Feedback>
+                <ValidationSuccess>Tournament is valid.</ValidationSuccess>
+                <ValidationError>Tournament is not valid. 4-8 team tournaments only!</ValidationError>
+            </Feedback>
+        </TextEdit>
+    </Validation>
+    <h2>Choose a tournament point system (win/tie/loss)</h2>
+    <RadioGroup CheckedValue="@Model.PointSystem" TValue="string" Name="point-system" CheckedValueChanged="@OnCheckedValueChanged">
+        <Radio Value="@("football")">3/1/0</Radio>
+        <Radio Value="@("chess")">1/0.5/0</Radio>
+        <Radio Value="@("basketball")">2/1/0</Radio>
+    </RadioGroup>
+    <button type="submit">Submit</button>
+</EditForm>

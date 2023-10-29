@@ -1,0 +1,15 @@
+<Table>
+    <TableHeader>
+        <TableRow>
+            <TableHeaderCell>Position</TableHeaderCell>
+            <TableHeaderCell>Team name</TableHeaderCell>
+            <TableHeaderCell>Points</TableHeaderCell>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        @for (var i = 0; i < _standings.Count; i++)
+        {
+            <StandingsRow Position=@(i + 1) TeamName=@_standings[i].Name Points=@_standings[i].Points></StandingsRow>
+        }
+    </TableBody>
+</Table>

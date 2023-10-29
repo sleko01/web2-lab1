@@ -1,0 +1,21 @@
+@inject NavigationManager NavigationManager
+<EditForm Model="@_model" OnSubmit="@ChangeScores">
+    <div class="row">
+        <div class="col-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4>@_model.Team1</h4>
+                <InputText placeholder="@_model.Team1Score" @bind-Value="@_model.Team1Score"></InputText>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4>@_model.Team2</h4>
+                <InputText placeholder="@_model.Team2Score" @bind-Value="@_model.Team2Score"></InputText>
+            </div>
+        </div>
+        <div class="col-3">
+            <button type="submit">Submit</button>
+        </div>
+    </div>
+
+</EditForm>

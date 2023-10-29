@@ -1,0 +1,42 @@
+@page "/schedule"
+@using TournamentCreator.Components
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@if (IsLoggedIn)
+{
+    @foreach (var round in Tournament!.Schedule)
+    {
+        @foreach (var match in round)
+        {
+            <ScheduleRow Team1="@match.Team1.Name" Team2="@match.Team2.Name" Score1="@int.Parse(match.Team1Score)" Score2="@int.Parse(match.Team2Score)"></ScheduleRow>
+        }
+    }
+} else
+{
+    <Table>
+        <TableHeader>
+            <TableRow>
+                <TableHeaderCell>Home team</TableHeaderCell>
+                <TableHeaderCell>Home team score</TableHeaderCell>
+                <TableHeaderCell>Away team score</TableHeaderCell>
+                <TableHeaderCell>Away team</TableHeaderCell>
+            </TableRow>
+        </TableHeader>
+        <TableBody>
+            @foreach (var round in Tournament!.Schedule)
+            {
+                foreach (var match in round)
+                {
+                    <TableRow>
+                        <TableRowCell>@match.Team1</TableRowCell>
+                        <TableRowCell>@(int.Parse(match.Team1Score) != -1 ? match.Team1Score : "Not yet played")</TableRowCell>
+                        <TableRowCell>@(int.Parse(match.Team2Score) != -1 ? match.Team2Score : "Not yet played")</TableRowCell>
+                        <TableRowCell>@match.Team2</TableRowCell>
+                    </TableRow>
+                }
+                <Divider />
+            }
+        </TableBody>
+    </Table>
+}
+
+<Standings></Standings>
